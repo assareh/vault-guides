@@ -1,3 +1,6 @@
+## note this should be modified in my case to export the service account key since i need it to go to my local vault instance
+## permissions missing also ensure the key exists and the service account has at least roles/cloudkms.cryptoKeyEncrypterDecrypter permission: rpc error: code = PermissionDenied desc = Permission 'cloudkms.cryptoKeyVersions.useToEncrypt' denied on resource 'projects/assareh-skye-vault-kms/locations/us-west1/keyRings/skye-vault-cluster/cryptoKeys/skye-vault-cluster' (or it may not exist).
+
 provider "google" {
   credentials = file(var.account_file_path)
   project     = var.gcloud-project
