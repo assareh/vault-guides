@@ -1,16 +1,5 @@
-data "aws_ami" "telemetry" {
-  most_recent = true
-
-  filter {
-    name   = "image-id"
-    values = [var.consul_ami]
-  }
-
-  owners = ["self"]
-}
-
 resource "aws_instance" "telemetry" {
-  ami                         = data.aws_ami.telemetry.id
+  ami                         = data.aws_ami.ubuntu.id
   instance_type               = var.telemetry_instance_type
   subnet_id                   = module.vpc.private_subnets[0]
   key_name                    = aws_key_pair.aws.key_name

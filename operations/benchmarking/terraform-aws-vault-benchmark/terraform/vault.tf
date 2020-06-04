@@ -1,17 +1,6 @@
-data "aws_ami" "vault" {
-  most_recent = true
-
-  filter {
-    name   = "image-id"
-    values = [var.vault_ami]
-  }
-
-  owners = ["self"]
-}
-
 resource "aws_instance" "vault" {
   count                       = 3
-  ami                         = data.aws_ami.vault.id
+  ami                         = data.aws_ami.ubuntu.id
   instance_type               = var.vault_instance_type
   subnet_id                   = module.vpc.private_subnets[count.index]
   key_name                    = aws_key_pair.aws.key_name

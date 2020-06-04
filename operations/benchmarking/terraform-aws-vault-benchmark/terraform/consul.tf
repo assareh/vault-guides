@@ -1,17 +1,6 @@
-data "aws_ami" "consul" {
-  most_recent = true
-
-  filter {
-    name   = "image-id"
-    values = [var.consul_ami]
-  }
-
-  owners = ["self"]
-}
-
 resource "aws_instance" "consul" {
   count                       = var.consul_cluster_size
-  ami                         = data.aws_ami.consul.id
+  ami                         = data.aws_ami.ubuntu.id
   instance_type               = var.consul_instance_type
   subnet_id                   = element(module.vpc.private_subnets, count.index)
   key_name                    = aws_key_pair.aws.key_name

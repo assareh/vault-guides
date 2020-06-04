@@ -14,12 +14,6 @@ variable "azs" {
 variable "region" {
 }
 
-variable "consul_ami" {
-}
-
-variable "vault_ami" {
-}
-
 variable "vault_instance_type" {
   description = "Vault servers, shipping metrics with Telegraf agent"
   # default = "m5.2xlarge"

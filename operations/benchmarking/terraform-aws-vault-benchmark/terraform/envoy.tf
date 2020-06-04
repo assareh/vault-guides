@@ -1,16 +1,5 @@
-data "aws_ami" "envoy" {
-  most_recent = true
-
-  filter {
-    name   = "image-id"
-    values = [var.consul_ami]
-  }
-
-  owners = ["self"]
-}
-
 resource "aws_instance" "envoy" {
-  ami                         = data.aws_ami.envoy.id
+  ami                         = data.aws_ami.ubuntu.id
   instance_type               = var.envoy_instance_type
   subnet_id                   = module.vpc.private_subnets[0]
   key_name                    = aws_key_pair.aws.key_name

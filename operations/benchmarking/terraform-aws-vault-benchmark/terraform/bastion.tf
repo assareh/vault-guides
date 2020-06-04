@@ -1,16 +1,21 @@
-data "aws_ami" "bastion" {
+data "aws_ami" "ubuntu" {
   most_recent = true
 
   filter {
-    name   = "image-id"
-    values = [var.consul_ami]
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"]
   }
 
-  owners = ["self"]
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["099720109477"] # Canonical
 }
 
 resource "aws_instance" "bastion" {
-  ami                         = data.aws_ami.bastion.id
+  ami                         = data.aws_ami.ubuntu.id
   instance_type               = "t2.micro"
   subnet_id                   = module.vpc.public_subnets[0]
   key_name                    = aws_key_pair.aws.key_name
