@@ -1,0 +1,11 @@
+ttl="8"
+region="us-west-2"
+azs=["us-west-2a", "us-west-2b", "us-west-2c"]
+env="vault-benchmark"
+consul_ami="ami-00000000000000000"
+vault_ami="ami-00000000000000000"
+vault_instance_type="m5.large"
+consul_instance_type="m5.xlarge"
+telemetry_instance_type="m5.large"
+benchmark_instance_type="m5.large"
+envoy_instance_type="m5.large"
